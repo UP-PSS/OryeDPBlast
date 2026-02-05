@@ -8,17 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts for Playfair Display and Lora -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght%40700&family=Lora:wght%40400%3B700&display=swap" rel="stylesheet">
+    <!-- Google Fonts for Roboto Slab -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Root variables and general body styling */
         :root {
-            --primary-gold: #B8860B; /* DarkGoldenrod - a rich, deep gold */
-            --light-gold: #DAA520; /* Goldenrod - a vibrant gold */
-            --soft-cream: #FFF8E1; /* A very light, warm cream */
-            --warm-white: #FFFAF0; /* Floral White */
-            --accent-gold: #FFD700; /* Gold - a brighter gold */
-            --dark-text: #333333; /* Dark gray for text */
+            --primary-gold: #c29a31; /* Main accent */
+            --light-gold: #a3a3a3; /* Light neutral */
+            --soft-cream: #f7f4ec; /* Light background tint */
+            --warm-white: #fffdf7; /* Warm white */
+            --accent-gold: #c29a31; /* Main accent */
+            --dark-text: #50391f; /* Dark accent */
             --light-text: #FFFFFF; /* White for text on dark backgrounds */
             --shadow-light: rgba(0, 0, 0, 0.1);
             --shadow-medium: rgba(0, 0, 0, 0.2);
@@ -31,7 +31,7 @@
         body {
             box-sizing: border-box;
             margin: 0;
-            font-family: 'Lora', serif;
+            font-family: 'Roboto Slab', serif;
             color: var(--dark-text);
             background-image: url('Background.png'); /* Ensure this path is correct */
             background-size: cover;
@@ -398,12 +398,12 @@
             appearance: none; /* Remove default arrow */
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23B8860B%22%20d%3D%22M287%2C197.398L146.203%2C56.591L5.405%2C197.398c-3.612%2C3.612-9.45%2C3.612-13.062%2C0c-3.612-3.612-3.612-9.45%2C0-13.062L140%2C43.535c3.612-3.612%2C9.45-3.612%2C13.062%2C0l133.062%2C133.061C290.612%2C187.948%2C290.612%2C193.786%2C287%2C197.398z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23c29a31%22%20d%3D%22M287%2C197.398L146.203%2C56.591L5.405%2C197.398c-3.612%2C3.612-9.45%2C3.612-13.062%2C0c-3.612-3.612-3.612-9.45%2C0-13.062L140%2C43.535c3.612-3.612%2C9.45-3.612%2C13.062%2C0l133.062%2C133.061C290.612%2C187.948%2C290.612%2C193.786%2C287%2C197.398z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 12px;
             cursor: pointer;
-            font-family: 'Lora', serif; /* Apply Lora font */
+            font-family: 'Roboto Slab', serif;
             color: var(--dark-text);
         }
 
@@ -508,7 +508,7 @@
         }
 
         .modal-content h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto Slab', serif;
             color: var(--primary-gold);
             margin-bottom: 20px;
             font-size: 1.8em;
@@ -555,7 +555,7 @@
             border: 1px solid #ddd;
             border-radius: var(--border-radius-soft);
             box-sizing: border-box;
-            font-family: 'Lora', serif; /* Apply Lora font */
+            font-family: 'Roboto Slab', serif;
             color: var(--dark-text);
             display: block; /* Ensure inputs take full width */
             margin-left: auto; /* Center input field */
@@ -575,7 +575,7 @@
             text-align: left;
             white-space: pre-wrap; /* Preserve line breaks */
             word-wrap: break-word; /* Break long words */
-            font-family: 'Lora', serif;
+            font-family: 'Roboto Slab', serif;
             color: var(--dark-text);
             margin-left: auto; /* Center the display box */
             margin-right: auto; /* Center the display box */
@@ -855,7 +855,7 @@
         }
 
         .countdown-container h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto Slab', serif;
             font-size: 28px; /* Default font size */
             color: var(--primary-gold);
             margin-bottom: 20px;
@@ -883,7 +883,7 @@
 
         .time-box .value {
             font-size: 36px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto Slab', serif;
             font-weight: bold;
         }
 
@@ -1113,14 +1113,6 @@
             <p>Fill in the details below to generate a personalized caption for your photo!</p>
             <label for="personNameInput" class="block text-left text-sm font-bold text-gray-700 mb-1">Nickname or Name:</label>
             <input type="text" id="personNameInput" class="input-field" placeholder="Nickname or Name (e.g. Juan / Jay)">
-            <label for="degreeProgramSelect" class="block text-left text-sm font-bold text-gray-700 mb-1">Degree Program:</label>
-            <select id="degreeProgramSelect" class="input-field">
-                <option value="">Select Degree Program</option>
-                <option value="BS Agriculture">BS Agriculture</option>
-                <option value="BS Agricultural Biotechnology">BS Agricultural Biotechnology</option>
-                <option value="BS Agricultural Chemistry">BS Agricultural Chemistry</option>
-                <option value="BS Food Science and Technology">BS Food Science and Technology</option>
-            </select>
             <div id="generatedCaptionDisplay">
                 Your generated caption will appear here.
             </div>
@@ -2113,7 +2105,6 @@
         const captionCustomizationModal = document.getElementById('captionCustomizationModal');
         const captionModalCloseBtn = document.getElementById('captionModalCloseBtn');
         const personNameInput = document.getElementById('personNameInput');
-        const degreeProgramSelect = document.getElementById('degreeProgramSelect'); // New dropdown
         const generatedCaptionDisplay = document.getElementById('generatedCaptionDisplay');
         const generateCaptionBtn = document.getElementById('generateCaptionBtn');
         const copyCaptionBtn = document.getElementById('copyCaptionBtn');
@@ -2124,7 +2115,7 @@
         // Hardcoded caption template based on Caption.txt
         const captionTemplate = `𝑩𝒆𝒏𝒆𝒂𝒕𝒉 𝒕𝒉𝒆 𝒉𝒖𝒔𝒉 𝒐𝒇 𝒆𝒎𝒆𝒓𝒂𝒍𝒅 𝒍𝒆𝒂𝒗𝒆𝒔, 𝒂 𝒔𝒆𝒆𝒅𝒍𝒊𝒏𝒈 𝒔𝒕𝒊𝒓𝒔 𝒂𝒏𝒅 𝒕𝒉𝒆 𝒈𝒂𝒓𝒅𝒆𝒏 𝒃𝒓𝒆𝒂𝒕𝒉𝒆𝒔 🍃🌬
 
-The enchanted gate has finally opened!🗝🚪 I am [nickname], from [degree program] of College of Agriculture and Food Science, a proud 𝐂𝐀𝐅𝐒𝐞𝐞𝐝𝐥𝐢𝐧𝐠—ready to take root, bloom with purpose, and grow through the journey ahead! 🦋🌸
+The enchanted gate has finally opened!🗝🚪 I am [nickname] of the College of Agriculture and Food Science, a proud 𝐂𝐀𝐅𝐒𝐞𝐞𝐝𝐥𝐢𝐧𝐠—ready to take root, bloom with purpose, and grow through the journey ahead! 🦋🌸
 
 As we step into this new journey, let our presence be known—𝙡𝙚𝙩 𝙩𝙝𝙚 𝙜𝙖𝙧𝙙𝙚𝙣 𝙧𝙚𝙘𝙤𝙜𝙣𝙞𝙯𝙚 𝙤𝙣𝙚 𝙤𝙛 𝙞𝙩𝙨 𝙤𝙬𝙣. This moment marks our first bloom in a place where roots run deep and stories unfold like petals under the sun.🌷
 
@@ -2180,7 +2171,6 @@ To step into CAFS is to step into a garden of possibility—𝙬𝙝𝙚𝙧𝙚
             captionCustomizationModal.classList.add('active');
             // Clear previous inputs and generated caption when opening
             personNameInput.value = '';
-            degreeProgramSelect.value = ''; // Reset dropdown
             generatedCaptionDisplay.textContent = 'Your generated caption will appear here.';
             generatedCaption = "";
             copyCaptionBtn.textContent = 'COPY TO CLIPBOARD';
@@ -2195,19 +2185,16 @@ To step into CAFS is to step into a garden of possibility—𝙬𝙝𝙚𝙧𝙚
 
         generateCaptionBtn.addEventListener('click', () => {
             const nickname = personNameInput.value.trim();
-            const degreeProgram = degreeProgramSelect.value;
 
-            if (!nickname || !degreeProgram) {
-                showAlertModal("PLEASE ENTER A NICKNAME AND SELECT A DEGREE PROGRAM TO GENERATE THE CAPTION.", "INFORMATION");
+            if (!nickname) {
+                showAlertModal("PLEASE ENTER A NICKNAME TO GENERATE THE CAPTION.", "INFORMATION");
                 return;
             }
 
-            // Apply the new font conversion to the nickname and degree program
+            // Apply the new font conversion to the nickname
             const formattedNickname = convertToMathSansBold(nickname);
-            const formattedDegreeProgram = convertToMathSansBold(degreeProgram);
 
             let finalCaption = captionTemplate.replace('[nickname]', formattedNickname);
-            finalCaption = finalCaption.replace('[degree program]', formattedDegreeProgram);
             
             generatedCaption = finalCaption;
             generatedCaptionDisplay.textContent = generatedCaption;
