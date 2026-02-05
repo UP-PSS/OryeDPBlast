@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAFS' Secret Garden DP Frame</title>
+    <title>Lamon at Lagok 2026 DP Frame</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
@@ -71,9 +71,10 @@
 
         /* Main Container Styling */
         .container {
-            background-color: var(--soft-cream);
-            border-radius: var(--border-radius-soft);
-            box-shadow: 0 10px 25px var(--shadow-strong);
+            background: linear-gradient(180deg, var(--warm-white), var(--soft-cream));
+            border-radius: 14px;
+            border: 1px solid var(--border-ink);
+            box-shadow: 0 16px 30px rgba(44, 27, 15, 0.25);
             padding: 30px;
             display: flex;
             flex-direction: column;
@@ -99,14 +100,14 @@
 
         /* Global styling for individual action-buttons (Choose Photo, Download, Add Caption, Modal buttons) */
         .action-button {
-            background-color: var(--warm-white); /* White background */
-            color: var(--primary-gold); /* Gold text */
+            background: linear-gradient(180deg, #fff3dc, #f3d9ab);
+            color: var(--deep-brown);
             padding: 15px 30px; /* Consistent padding */
-            border-radius: var(--border-radius-soft);
+            border-radius: 12px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
-            border: 2px solid var(--primary-gold); /* Gold border */
+            border: 2px solid var(--accent-gold);
             text-transform: uppercase;
             text-align: center;
             font-size: 1.1em;
@@ -117,15 +118,15 @@
             margin: 0 auto;
             width: 100%; /* Default to full width on small screens */
             max-width: 280px; /* Max width for consistency */
-            box-shadow: 0 5px 15px var(--shadow-medium); /* Shadow */
+            box-shadow: 0 8px 16px rgba(44, 27, 15, 0.25);
         }
 
         /* General hover effect for all action-buttons */
         .action-button:hover:not(:disabled) {
-            background-color: var(--primary-gold); /* Gold background on hover */
-            color: var(--light-text); /* White text on hover */
+            background-color: var(--accent-gold);
+            color: #fff7ea;
             transform: translateY(-2px);
-            border-color: var(--primary-gold); /* Keep border gold on hover */
+            border-color: var(--accent-gold);
         }
 
         /* General disabled state styling for all action-buttons */
@@ -253,9 +254,9 @@
         /* Controls Container */
         .controls-container {
             flex-grow: 1; /* Allow controls to take available space */
-            background-color: var(--warm-white);
-            border-radius: var(--border-radius-soft);
-            box-shadow: 0 5px 15px var(--shadow-medium);
+            background: linear-gradient(180deg, #fff9ef, var(--soft-cream));
+            border-radius: 14px;
+            box-shadow: 0 12px 20px rgba(44, 27, 15, 0.2);
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -268,14 +269,14 @@
 
         .tabs-header {
             display: flex;
-            border-bottom: 2px solid var(--soft-cream);
+            border-bottom: 2px solid var(--light-gold);
         }
 
         .tab-button {
             flex: 1;
             padding: 10px 15px;
-            background-color: var(--soft-cream); /* Explicit background for tabs */
-            color: var(--dark-text);
+            background-color: var(--light-gold);
+            color: var(--deep-brown);
             border: none;
             border-radius: var(--border-radius-soft) var(--border-radius-soft) 0 0;
             cursor: pointer;
@@ -285,8 +286,8 @@
 
         .tab-button.active {
             background-color: var(--warm-white);
-            color: var(--primary-gold);
-            border-bottom: 2px solid var(--primary-gold);
+            color: var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
         }
 
         .tab-content {
@@ -308,7 +309,7 @@
 
         .control-group label {
             font-weight: bold;
-            color: var(--primary-gold);
+            color: var(--accent-gold);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -324,7 +325,7 @@
         }
 
         .control-sub-button {
-            background-color: var(--light-gold);
+            background-color: var(--accent-gold);
             color: var(--light-text);
             border: none;
             border-radius: var(--border-radius-soft);
@@ -361,7 +362,7 @@
             width: 100%;
             -webkit-appearance: none; /* Hides the default slider */
             height: 8px;
-            background: #ddd;
+            background: #dfd4bf;
             outline: none;
             border-radius: 5px;
             transition: opacity .2s;
@@ -373,7 +374,7 @@
             appearance: none;
             width: 20px;
             height: 20px;
-            background: var(--primary-gold);
+            background: var(--accent-gold);
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -382,7 +383,7 @@
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
-            background: var(--primary-gold);
+            background: var(--accent-gold);
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -393,7 +394,7 @@
             width: 100%;
             padding: 10px;
             border-radius: var(--border-radius-soft);
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-ink);
             background-color: var(--warm-white);
             appearance: none; /* Remove default arrow */
             -webkit-appearance: none;
@@ -484,10 +485,11 @@
         }
 
         .modal-content {
-            background-color: var(--warm-white);
+            background: linear-gradient(180deg, #fff8ec, var(--soft-cream));
             padding: 30px;
-            border-radius: var(--border-radius-soft);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            border: 1px solid var(--border-ink);
+            box-shadow: 0 18px 30px rgba(44, 27, 15, 0.25);
             max-width: 500px;
             width: 90%;
             position: relative;
