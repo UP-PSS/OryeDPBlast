@@ -2393,14 +2393,14 @@ International Veterinary Students' Association UPLB
         // The actual event time is February 10, 2026, 6:00 PM (18:00:00).
         // Caption enable time is 2 minutes before kickoff.
         const KICKOFF_TIME = new Date("Feb 10, 2026 18:00:00").getTime();
-        const CAPTION_ENABLE_TIME = new Date("Feb 10, 2026 17:58:00").getTime(); // 2 minutes before 6 PM
+        const CAPTION_ENABLE_TIME = new Date("Feb 10, 2026 17:55:00").getTime(); // 2 minutes before 6 PM
 
         // Finalize Picture Button - now "Add Caption"
         document.getElementById('finalizeBtn').addEventListener('click', () => {
             const now = new Date().getTime(); // Get current time at click
 
             if (now < CAPTION_ENABLE_TIME) { // Use global CAPTION_ENABLE_TIME
-                showAlertModal("Captions can only be added starting 2 minutes before the 6:00 PM DP Blast. Please try again then.", "CAPTION UNAVAILABLE");
+                showAlertModal("Captions can only be added starting 5 minutes before the 6:00 PM DP Blast. Please try again then.", "CAPTION UNAVAILABLE");
                 return;
             }
             
