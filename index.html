@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premiere Soiree Slayage DP Frame</title>
+    <title>Lamon at Lagok 2026 DP Frame</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
@@ -886,7 +886,7 @@
     </div>
 
     <div class="header-content">
-        <img src="Logo.png" alt="Secret Garden" class="logo-image">
+        <img src="Logo.png" alt="Logo" class="logo-image">
     </div>
 
     <div class="container">
@@ -924,7 +924,7 @@
                         </div>
                         <div>
                             <label for="overlayBatch" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">BATCH NAME <span style="font-weight: normal; color: #999;">("BATCH" is auto-added)</span></label>
-                            <input type="text" id="overlayBatch" placeholder="e.g. Tiburon"
+                            <input type="text" id="overlayBatch" placeholder="e.g. Tibuok"
                                 style="width: 100%; padding: 8px 10px; border: 1px solid var(--accent-gold); border-radius: 7px;
                                        background: #fffdf7; color: var(--dark-text); font-family: 'Roboto Slab', serif;
                                        font-size: 0.9em; box-sizing: border-box; outline: none;">
@@ -1406,18 +1406,38 @@
 
             if (!rawName && !rawBatch) return;
 
-            // ── Position constants (calibrated to PSS ticket stub, 1500×1500 frame) ──
-            // TEXT_X  — horizontal centre of the dark ticket's label area
-            // NAME_Y  — vertical centre of the Name row
-            // BATCH_Y — vertical centre of the Batch row
-            const TEXT_X    = canvasWidth  * 0.690;
-            const NAME_Y    = canvasHeight * 0.279;
-            const BATCH_Y   = canvasHeight * 0.306;
-            const TEXT_ROTATION = -0.038; // ~-2.2° tilt to follow ticket angle
+            // ── Position constants ──
+            const TEXT_X        = canvasWidth  * 0.715;
+            const NAME_Y        = canvasHeight * 0.315;
+            const BATCH_Y       = canvasHeight * 0.340;
+            const TEXT_ROTATION = 0.1;
 
-            // ── Font sizes: calibrated so 28.6 px / 13.3 px on the 500 px preview canvas ──
-            const nameFontSize  = Math.round(canvasWidth * (28.6 / 500));  // 28.6px @ 500px
-            const batchFontSize = Math.round(canvasWidth * (13.3 / 500));  // 13.3px @ 500px
+            // ── Base font sizes ──
+            const nameBaseSize  = Math.round(canvasWidth * (20  / 500));
+            const batchBaseSize = Math.round(canvasWidth * (4.7 / 500));
+
+            // ── Minimum font sizes (never shrink below these) ──
+            const nameMinSize  = Math.round(canvasWidth * (10  / 500));
+            const batchMinSize = Math.round(canvasWidth * (3.0 / 500));
+
+            // ── Self-calibrating max widths: measured from the actual boundary strings
+            //    using the real loaded font (Allenoire or its fallback) so it's always exact ──
+            targetCtx.font = `${nameBaseSize}px 'Allenoire', 'Georgia', serif`;
+            const MAX_NAME_WIDTH = targetCtx.measureText("Abel Pa").width;
+
+            targetCtx.font = `bold ${batchBaseSize}px 'Droid Serif', 'Georgia', serif`;
+            const MAX_BATCH_WIDTH = targetCtx.measureText("BATCH TIBUOKKKK").width;
+
+            // ── Shrink-to-fit helper ──
+            function fitFontSize(text, fontTemplate, baseSize, minSize, maxWidth) {
+                let size = baseSize;
+                while (size > minSize) {
+                    targetCtx.font = fontTemplate(size);
+                    if (targetCtx.measureText(text).width <= maxWidth) break;
+                    size -= Math.max(1, Math.round(baseSize * 0.04));
+                }
+                return Math.max(size, minSize);
+            }
 
             targetCtx.save();
             targetCtx.translate(TEXT_X, NAME_Y);
@@ -1425,27 +1445,35 @@
             targetCtx.textAlign    = 'center';
             targetCtx.textBaseline = 'middle';
 
-            // Subtle shadow for legibility
             targetCtx.shadowColor   = 'rgba(0,0,0,0.35)';
             targetCtx.shadowBlur    = 2;
             targetCtx.shadowOffsetX = 1;
             targetCtx.shadowOffsetY = 1;
 
-            // ── Name — Allenoire, Title Case ──
+            // ── Name — Allenoire, Title Case, shrink-to-fit ──
             if (rawName) {
                 const displayName = rawName.replace(/\b\w/g, c => c.toUpperCase());
-                targetCtx.font      = `${nameFontSize}px 'Allenoire', 'Georgia', serif`;
+                const nameSize = fitFontSize(
+                    displayName,
+                    s => `${s}px 'Allenoire', 'Georgia', serif`,
+                    nameBaseSize, nameMinSize, MAX_NAME_WIDTH
+                );
+                targetCtx.font      = `${nameSize}px 'Allenoire', 'Georgia', serif`;
                 targetCtx.fillStyle = '#f5dfa0';
                 targetCtx.fillText(displayName, 0, 0);
             }
 
-            // ── Batch — Droid Serif Bold, ALL CAPS, always prefixed with "BATCH " ──
+            // ── Batch — Droid Serif Bold, ALL CAPS, "BATCH " prefix, shrink-to-fit ──
             if (rawBatch) {
-                // Strip any existing "BATCH" prefix the user may have typed, then re-add it
                 const cleanBatch   = rawBatch.replace(/^BATCH\s*/i, '').toUpperCase();
                 const displayBatch = 'BATCH ' + cleanBatch;
-                targetCtx.font      = `bold ${batchFontSize}px 'Droid Serif', 'Georgia', serif`;
-                targetCtx.fillStyle = '#c8a84b';
+                const batchSize = fitFontSize(
+                    displayBatch,
+                    s => `bold ${s}px 'Droid Serif', 'Georgia', serif`,
+                    batchBaseSize, batchMinSize, MAX_BATCH_WIDTH
+                );
+                targetCtx.font          = `bold ${batchSize}px 'Droid Serif', 'Georgia', serif`;
+                targetCtx.fillStyle     = '#c8a84b';
                 targetCtx.letterSpacing = '1px';
                 targetCtx.fillText(displayBatch, 0, BATCH_Y - NAME_Y);
             }
@@ -2383,7 +2411,7 @@ International Veterinary Students' Association UPLB
                 a.href = dataURL;
                 // Generate random string for filename
                 const randomChars = generateRandomString(8);
-                a.download = `CAFSFCSecretGarden_DPBlast_${randomChars}.png`;
+                a.download = `PSSOrye_DPBlast_${randomChars}.png`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
