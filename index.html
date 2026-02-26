@@ -1489,49 +1489,50 @@
         }
 
         // ─── Text Overlay: Name + Batch ───────────────────────────────────────────
-        // Positions are expressed as fractions of canvas size so they scale with
-        // both the preview canvas and the high-resolution download canvas.
-        // Tweak TEXT_X / NAME_Y / BATCH_Y to move the text on the ticket graphic.
+        // Positions are fractions of canvas size — they scale for both preview
+        // (500px) and the high-res download canvas (matches frameImage native size).
+        //
+        // HOW TO FINE-TUNE: change the three constants below.
+        //   TEXT_X  — horizontal centre of the ticket label (0 = left, 1 = right)
+        //   NAME_Y  — vertical centre of the Name line
+        //   BATCH_Y — vertical centre of the Batch Name line
         function drawTextOverlay(targetCtx, canvasWidth, canvasHeight) {
             const name  = (document.getElementById('overlayName').value  || '').trim();
             const batch = (document.getElementById('overlayBatch').value || '').trim().toUpperCase();
 
             if (!name && !batch) return;
 
-            // --- Position constants (fraction of canvas dimensions) ---
-            // These match the ticket stub visible in the upper-right of the frame.
-            // Adjust if your frame image is cropped differently.
-            const TEXT_X    = canvasWidth  * 0.635;  // horizontal centre of ticket label area
-            const NAME_Y    = canvasHeight * 0.345;  // vertical centre for the Name line
-            const BATCH_Y   = canvasHeight * 0.388;  // vertical centre for the Batch line
+            // ── Position & size constants (calibrated to the PSS ticket stub) ──
+            const TEXT_X    = canvasWidth  * 0.680;  // center-X of dark ticket card
+            const NAME_Y    = canvasHeight * 0.283;  // vertical center of "Name" row
+            const BATCH_Y   = canvasHeight * 0.310;  // vertical center of "BATCH NAME" row
 
-            // --- Font sizes scale with canvas ---
-            const nameFontSize  = Math.round(canvasWidth * 0.048);   // ~24px on 500px canvas
-            const batchFontSize = Math.round(canvasWidth * 0.022);   // ~11px on 500px canvas
+            // Font sizes relative to canvas width
+            const nameFontSize  = Math.round(canvasWidth * 0.037);  // ~56px on 1500px
+            const batchFontSize = Math.round(canvasWidth * 0.018);  // ~27px on 1500px
 
             targetCtx.save();
             targetCtx.textAlign    = 'center';
             targetCtx.textBaseline = 'middle';
 
-            // Shadow for legibility
-            targetCtx.shadowColor   = 'rgba(0,0,0,0.55)';
-            targetCtx.shadowBlur    = 3;
+            // Subtle shadow so text reads over any background
+            targetCtx.shadowColor   = 'rgba(0,0,0,0.35)';
+            targetCtx.shadowBlur    = 2;
             targetCtx.shadowOffsetX = 1;
             targetCtx.shadowOffsetY = 1;
 
-            // --- Name line (Allenoire, title-case) ---
+            // ── Name (Allenoire — first letter of each word capitalised) ──
             if (name) {
-                // Title-case: first letter of each word capitalised
                 const displayName = name.replace(/\b\w/g, c => c.toUpperCase());
                 targetCtx.font      = `${nameFontSize}px 'Allenoire', 'Georgia', serif`;
-                targetCtx.fillStyle = '#1a0a00';   // dark brown, matches ticket text
+                targetCtx.fillStyle = '#f5dfa0';   // warm cream matching original "Name" colour
                 targetCtx.fillText(displayName, TEXT_X, NAME_Y);
             }
 
-            // --- Batch line (Droid Serif, all caps) ---
+            // ── Batch Name (Droid Serif — ALL CAPS, smaller) ──
             if (batch) {
                 targetCtx.font      = `bold ${batchFontSize}px 'Droid Serif', 'Georgia', serif`;
-                targetCtx.fillStyle = '#3b2000';   // slightly lighter brown
+                targetCtx.fillStyle = '#c8a84b';   // gold tone matching "BATCH NAME" colour
                 targetCtx.letterSpacing = '1px';
                 targetCtx.fillText(batch, TEXT_X, BATCH_Y);
             }
