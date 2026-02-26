@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lamon at Lagok 2026 DP Frame</title>
+    <title>Premiere Soiree Slayage DP Frame</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
@@ -923,8 +923,8 @@
                                        font-size: 0.9em; box-sizing: border-box; outline: none;">
                         </div>
                         <div>
-                            <label for="overlayBatch" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">BATCH NAME</label>
-                            <input type="text" id="overlayBatch" placeholder="e.g. Batch 2026"
+                            <label for="overlayBatch" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">BATCH NAME <span style="font-weight: normal; color: #999;">("BATCH" is auto-added)</span></label>
+                            <input type="text" id="overlayBatch" placeholder="e.g. Tiburon"
                                 style="width: 100%; padding: 8px 10px; border: 1px solid var(--accent-gold); border-radius: 7px;
                                        background: #fffdf7; color: var(--dark-text); font-family: 'Roboto Slab', serif;
                                        font-size: 0.9em; box-sizing: border-box; outline: none;">
@@ -1401,20 +1401,23 @@
         //   NAME_Y  — vertical centre of the Name line
         //   BATCH_Y — vertical centre of the Batch Name line
         function drawTextOverlay(targetCtx, canvasWidth, canvasHeight) {
-            const name  = (document.getElementById('overlayName').value  || '').trim();
-            const batch = (document.getElementById('overlayBatch').value || '').trim().toUpperCase();
+            const rawName  = (document.getElementById('overlayName').value  || '').trim();
+            const rawBatch = (document.getElementById('overlayBatch').value || '').trim();
 
-            if (!name && !batch) return;
+            if (!rawName && !rawBatch) return;
 
-            // ── Position & size constants (calibrated to the PSS ticket stub) ──
-            const TEXT_X    = canvasWidth  * 0.676;  // center-X of dark ticket card
-            const NAME_Y    = canvasHeight * 0.279;  // tuned to fit ticket slot
-            const BATCH_Y   = canvasHeight * 0.302;  // tuned to fit ticket slot
-            const TEXT_ROTATION = -0.038; // slight tilt to match ticket angle (~-2.2deg)
+            // ── Position constants (calibrated to PSS ticket stub, 1500×1500 frame) ──
+            // TEXT_X  — horizontal centre of the dark ticket's label area
+            // NAME_Y  — vertical centre of the Name row
+            // BATCH_Y — vertical centre of the Batch row
+            const TEXT_X    = canvasWidth  * 0.690;
+            const NAME_Y    = canvasHeight * 0.279;
+            const BATCH_Y   = canvasHeight * 0.306;
+            const TEXT_ROTATION = -0.038; // ~-2.2° tilt to follow ticket angle
 
-            // Font sizes relative to canvas width (slightly smaller for better slot fit)
-            const nameFontSize  = Math.round(canvasWidth * 0.032);  // ~48px on 1500px
-            const batchFontSize = Math.round(canvasWidth * 0.015);  // ~23px on 1500px
+            // ── Font sizes: calibrated so 28.6 px / 13.3 px on the 500 px preview canvas ──
+            const nameFontSize  = Math.round(canvasWidth * (28.6 / 500));  // 28.6px @ 500px
+            const batchFontSize = Math.round(canvasWidth * (13.3 / 500));  // 13.3px @ 500px
 
             targetCtx.save();
             targetCtx.translate(TEXT_X, NAME_Y);
@@ -1422,26 +1425,29 @@
             targetCtx.textAlign    = 'center';
             targetCtx.textBaseline = 'middle';
 
-            // Subtle shadow so text reads over any background
+            // Subtle shadow for legibility
             targetCtx.shadowColor   = 'rgba(0,0,0,0.35)';
             targetCtx.shadowBlur    = 2;
             targetCtx.shadowOffsetX = 1;
             targetCtx.shadowOffsetY = 1;
 
-            // ── Name (Allenoire — first letter of each word capitalised) ──
-            if (name) {
-                const displayName = name.replace(/\b\w/g, c => c.toUpperCase());
+            // ── Name — Allenoire, Title Case ──
+            if (rawName) {
+                const displayName = rawName.replace(/\b\w/g, c => c.toUpperCase());
                 targetCtx.font      = `${nameFontSize}px 'Allenoire', 'Georgia', serif`;
-                targetCtx.fillStyle = '#f5dfa0';   // warm cream matching original "Name" colour
+                targetCtx.fillStyle = '#f5dfa0';
                 targetCtx.fillText(displayName, 0, 0);
             }
 
-            // ── Batch Name (Droid Serif — ALL CAPS, smaller) ──
-            if (batch) {
+            // ── Batch — Droid Serif Bold, ALL CAPS, always prefixed with "BATCH " ──
+            if (rawBatch) {
+                // Strip any existing "BATCH" prefix the user may have typed, then re-add it
+                const cleanBatch   = rawBatch.replace(/^BATCH\s*/i, '').toUpperCase();
+                const displayBatch = 'BATCH ' + cleanBatch;
                 targetCtx.font      = `bold ${batchFontSize}px 'Droid Serif', 'Georgia', serif`;
-                targetCtx.fillStyle = '#c8a84b';   // gold tone matching "BATCH NAME" colour
+                targetCtx.fillStyle = '#c8a84b';
                 targetCtx.letterSpacing = '1px';
-                targetCtx.fillText(batch, 0, BATCH_Y - NAME_Y);
+                targetCtx.fillText(displayBatch, 0, BATCH_Y - NAME_Y);
             }
 
             targetCtx.restore();
