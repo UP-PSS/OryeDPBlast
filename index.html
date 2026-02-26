@@ -24,18 +24,20 @@
     <style>
         /* Root variables and general body styling */
         :root {
-            --primary-gold: #c29a31; /* Main accent */
-            --light-gold: #a3a3a3; /* Light neutral */
-            --soft-cream: #f7f4ec; /* Light background tint */
-            --warm-white: #fffdf7; /* Warm white */
-            --accent-gold: #c29a31; /* Main accent */
-            --dark-text: #50391f; /* Dark accent */
+            --primary-gold: #c7354a; /* Main accent */
+            --light-gold: #e4b4bc; /* Light neutral */
+            --soft-cream: #fff0f2; /* Light background tint */
+            --warm-white: #fff8f8; /* Warm white */
+            --accent-gold: #e2465c; /* Main accent */
+            --dark-text: #4d1720; /* Dark accent */
             --light-text: #FFFFFF; /* White for text on dark backgrounds */
             --shadow-light: rgba(0, 0, 0, 0.1);
             --shadow-medium: rgba(0, 0, 0, 0.2);
             --shadow-strong: rgba(0, 0, 0, 0.4);
             --border-radius-soft: 8px;
             --border-radius-round: 50%;
+            --border-ink: #e8a6b1;
+            --deep-brown: #611825;
         }
 
         /* General body styling */
@@ -61,8 +63,8 @@
             content: "";
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at top, rgba(42, 157, 143, 0.2), transparent 55%),
-                linear-gradient(180deg, rgba(11, 18, 32, 0.7), rgba(11, 18, 32, 0.3));
+            background: radial-gradient(circle at top, rgba(225, 61, 84, 0.26), transparent 60%),
+                linear-gradient(180deg, rgba(72, 10, 21, 0.72), rgba(72, 10, 21, 0.35));
             z-index: 0;
             pointer-events: none;
         }
@@ -123,7 +125,7 @@
 
         /* Global styling for individual action-buttons (Choose Photo, Download, Add Caption, Modal buttons) */
         .action-button {
-            background: linear-gradient(180deg, #fff3dc, #f3d9ab);
+            background: linear-gradient(180deg, #ffe5ea, #f7b9c4);
             color: var(--deep-brown);
             padding: 15px 30px; /* Consistent padding */
             border-radius: 12px;
@@ -146,8 +148,8 @@
 
         /* General hover effect for all action-buttons */
         .action-button:hover:not(:disabled) {
-            background-color: var(--accent-gold);
-            color: #fff7ea;
+            background: linear-gradient(180deg, #f26a82, #dd3350);
+            color: #fff7f8;
             transform: translateY(-2px);
             border-color: var(--accent-gold);
         }
@@ -277,7 +279,7 @@
         /* Controls Container */
         .controls-container {
             flex-grow: 1; /* Allow controls to take available space */
-            background: linear-gradient(180deg, #fff9ef, var(--soft-cream));
+            background: linear-gradient(180deg, #fff6f7, var(--soft-cream));
             border-radius: 14px;
             box-shadow: 0 12px 20px rgba(44, 27, 15, 0.2);
             padding: 20px;
@@ -508,7 +510,7 @@
         }
 
         .modal-content {
-            background: linear-gradient(180deg, #fff8ec, var(--soft-cream));
+            background: linear-gradient(180deg, #fff6f7, var(--soft-cream));
             padding: 30px;
             border-radius: 16px;
             border: 1px solid var(--border-ink);
@@ -860,84 +862,6 @@
             }
         }
 
-        /* Countdown Timer Specific Styles */
-        .countdown-container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--border-radius-soft);
-            padding: 30px;
-            box-shadow: 0 8px 20px var(--shadow-medium);
-            transition: opacity 1s ease;
-            opacity: 1;
-            margin-top: 25px; /* Added margin to separate from action buttons */
-            width: 100%; /* Ensure it takes full width of the main container */
-            max-width: 600px; /* Limit max width for aesthetics */
-        }
-
-        .countdown-container.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .countdown-container h1 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 28px; /* Default font size */
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-        }
-
-        .countdown {
-            display: flex;
-            gap: 15px; /* Default gap */
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap; /* Allow time boxes to wrap to next line */
-        }
-
-        .time-box {
-            background: var(--light-gold);
-            color: var(--light-text);
-            border-radius: var(--border-radius-soft);
-            padding: 15px 10px;
-            box-shadow: 0 0 10px var(--shadow-strong);
-            text-align: center;
-            min-width: 60px;
-            flex: 1 1 auto; /* Allows boxes to grow and shrink */
-            max-width: 90px; /* Limits maximum size */
-        }
-
-        .time-box .value {
-            font-size: 36px;
-            font-family: 'Roboto Slab', serif;
-            font-weight: bold;
-        }
-
-        .time-box .label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-
-        /* Responsive adjustments for countdown timer */
-        @media (max-width: 480px) {
-            .countdown-container h1 {
-                font-size: 24px; /* Smaller font size for h1 on small screens */
-            }
-            .countdown {
-                gap: 10px; /* Reduced gap on smaller screens */
-            }
-            .time-box {
-                min-width: 50px;
-                padding: 12px 8px;
-            }
-            .time-box .value {
-                font-size: 30px; /* Smaller font size for values */
-            }
-            .time-box .label {
-                font-size: 10px; /* Smaller font size for labels */
-            }
-        }
     </style>
 </head>
 <body>
@@ -992,14 +916,14 @@
                     <label style="color: var(--accent-gold); font-weight: bold; font-size: 0.9em; letter-spacing: 1px; text-align: center;">✦ TICKET TEXT OVERLAY ✦</label>
                     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
                         <div>
-                            <label for="overlayName" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">NAME <span style="font-weight: normal; color: #999;">(Allenoire · Title Case)</span></label>
+                            <label for="overlayName" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">NAME</label>
                             <input type="text" id="overlayName" placeholder="e.g. Juan dela Cruz"
                                 style="width: 100%; padding: 8px 10px; border: 1px solid var(--accent-gold); border-radius: 7px;
                                        background: #fffdf7; color: var(--dark-text); font-family: 'Roboto Slab', serif;
                                        font-size: 0.9em; box-sizing: border-box; outline: none;">
                         </div>
                         <div>
-                            <label for="overlayBatch" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">BATCH NAME <span style="font-weight: normal; color: #999;">(Droid Serif · ALL CAPS)</span></label>
+                            <label for="overlayBatch" style="font-size: 0.78em; font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 4px;">BATCH NAME</label>
                             <input type="text" id="overlayBatch" placeholder="e.g. Batch 2026"
                                 style="width: 100%; padding: 8px 10px; border: 1px solid var(--accent-gold); border-radius: 7px;
                                        background: #fffdf7; color: var(--dark-text); font-family: 'Roboto Slab', serif;
@@ -1087,26 +1011,6 @@
             <button class="action-button" id="finalizeBtn">ADD CAPTION</button>
         </div>
 
-        <!-- Countdown Timer Section -->
-        <div class="countdown-container">
-            <h1>Get ready! The DP Blast event begins in...</h1>
-            <div class="countdown">
-                <!-- Removed Days -->
-                <div class="time-box">
-                    <div class="value" id="hours">00</div>
-                    <div class="label">Hours</div>
-                </div>
-                <div class="time-box">
-                    <div class="value" id="minutes">00</div>
-                    <div class="label">Minutes</div>
-                </div>
-                <div class="time-box">
-                    <div class="value" id="seconds">00</div>
-                    <div class="label">Seconds</div>
-                </div>
-            </div>
-        </div>
-        <!-- End Countdown Timer Section -->
 
     </div>
 
@@ -1503,15 +1407,18 @@
             if (!name && !batch) return;
 
             // ── Position & size constants (calibrated to the PSS ticket stub) ──
-            const TEXT_X    = canvasWidth  * 0.680;  // center-X of dark ticket card
-            const NAME_Y    = canvasHeight * 0.283;  // vertical center of "Name" row
-            const BATCH_Y   = canvasHeight * 0.310;  // vertical center of "BATCH NAME" row
+            const TEXT_X    = canvasWidth  * 0.676;  // center-X of dark ticket card
+            const NAME_Y    = canvasHeight * 0.279;  // tuned to fit ticket slot
+            const BATCH_Y   = canvasHeight * 0.302;  // tuned to fit ticket slot
+            const TEXT_ROTATION = -0.038; // slight tilt to match ticket angle (~-2.2deg)
 
-            // Font sizes relative to canvas width
-            const nameFontSize  = Math.round(canvasWidth * 0.037);  // ~56px on 1500px
-            const batchFontSize = Math.round(canvasWidth * 0.018);  // ~27px on 1500px
+            // Font sizes relative to canvas width (slightly smaller for better slot fit)
+            const nameFontSize  = Math.round(canvasWidth * 0.032);  // ~48px on 1500px
+            const batchFontSize = Math.round(canvasWidth * 0.015);  // ~23px on 1500px
 
             targetCtx.save();
+            targetCtx.translate(TEXT_X, NAME_Y);
+            targetCtx.rotate(TEXT_ROTATION);
             targetCtx.textAlign    = 'center';
             targetCtx.textBaseline = 'middle';
 
@@ -1526,7 +1433,7 @@
                 const displayName = name.replace(/\b\w/g, c => c.toUpperCase());
                 targetCtx.font      = `${nameFontSize}px 'Allenoire', 'Georgia', serif`;
                 targetCtx.fillStyle = '#f5dfa0';   // warm cream matching original "Name" colour
-                targetCtx.fillText(displayName, TEXT_X, NAME_Y);
+                targetCtx.fillText(displayName, 0, 0);
             }
 
             // ── Batch Name (Droid Serif — ALL CAPS, smaller) ──
@@ -1534,7 +1441,7 @@
                 targetCtx.font      = `bold ${batchFontSize}px 'Droid Serif', 'Georgia', serif`;
                 targetCtx.fillStyle = '#c8a84b';   // gold tone matching "BATCH NAME" colour
                 targetCtx.letterSpacing = '1px';
-                targetCtx.fillText(batch, TEXT_X, BATCH_Y);
+                targetCtx.fillText(batch, 0, BATCH_Y - NAME_Y);
             }
 
             targetCtx.restore();
@@ -1640,8 +1547,6 @@
                 toggleControls(false); // Disable controls initially for placeholder
                 console.log("Photo Frame initialized successfully.");
 
-                // Initialize countdown timer after all assets are loaded
-                timerInterval = setInterval(countdown, 1000); // Start the interval
             } catch (error) {
                 console.error("Initialization failed during image loading:", error);
                 hideLoadingOverlay();
@@ -2482,64 +2387,12 @@ International Veterinary Students' Association UPLB
             }, 2000); // 2-second delay
         });
 
-        // --- Global Time Variables for Testing ---
-        // These are set once when the script loads to simulate the event timeline.
-        // For testing, setting these relative to 'now' at page load.
-        // The actual event time is February 10, 2026, 6:00 PM (18:00:00).
-        // Caption enable time is 2 minutes before kickoff.
-        const KICKOFF_TIME = new Date("Feb 10, 2026 18:00:00").getTime();
-        const CAPTION_ENABLE_TIME = new Date("Feb 10, 2026 17:55:00").getTime(); // 2 minutes before 6 PM
-
         // Finalize Picture Button - now "Add Caption"
         document.getElementById('finalizeBtn').addEventListener('click', () => {
-            const now = new Date().getTime(); // Get current time at click
-
-            if (now < CAPTION_ENABLE_TIME) { // Use global CAPTION_ENABLE_TIME
-                showAlertModal("Captions can only be added starting 5 minutes before the 6:00 PM DP Blast. Please try again then.", "CAPTION UNAVAILABLE");
-                return;
-            }
-            
-            // Removed the check for currentImage being defaultImage.
             // The caption modal will now open regardless of whether a photo is present.
             showCaptionCustomizationModal();
         });
 
-        // Countdown Timer Logic (Modified to remove 'Days')
-        const countdownContainer = document.querySelector('.countdown-container');
-        let timerInterval; // Declare timerInterval globally
-
-        const countdown = () => {
-            const now = new Date().getTime();
-            
-            let distance = KICKOFF_TIME - now; // Use the globally defined KICKOFF_TIME
-
-            if (distance <= 0) {
-                document.getElementById("hours").textContent = "00";
-                document.getElementById("minutes").textContent = "00";
-                document.getElementById("seconds").textContent = "00";
-
-                // Fade out the countdown
-                countdownContainer.classList.add('fade-out');
-
-                // Remove from layout after fade
-                setTimeout(() => {
-                    countdownContainer.style.display = 'none';
-                }, 1000);
-
-                clearInterval(timerInterval);
-                return;
-            }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-        };
-
-        // The timer will be started in window.onload after all assets are loaded.
     </script>
 </body>
 </html>
